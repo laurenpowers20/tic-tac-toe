@@ -1,0 +1,17 @@
+body {
+  text-align: center;
+}
+
+.game-container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: 300px;
+  margin: auto;
+}
+.game-cell {
+  width: 100px;
+  height: 100px;
+  border: solid 2px black;
+  cursor: pointer;
+}
+
