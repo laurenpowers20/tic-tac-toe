@@ -15,16 +15,33 @@ const winPossibilities = [
   [0, 4, 8],
   [2, 4, 6],
 ];
-let winningStorage = ["", "", "", "", "", "", "", "", ""];
+let wins = ["", "", "", "", "", "", "", "", ""];
 
 function changePlayer() {
   currentPlayer = currentPlayer == "red" ? "blue" : "red";
-  statusText.textContent = `${currentPlayer}'s turn`;
+  if (
+    (wins[0] == wins[1] && wins[1] == wins[2] && wins[0] != "") ||
+    (wins[3] == wins[4] && wins[4] == wins[5] && wins[3] != "") ||
+    (wins[6] == wins[7] && wins[7] == wins[8] && wins[6] != "") ||
+    (wins[0] == wins[3] && wins[6] == wins[6] && wins[0] != "") ||
+    (wins[1] == wins[4] && wins[1] == wins[5] && wins[1] != "") ||
+    (wins[2] == wins[5] && wins[2] == wins[8] && wins[2] != "") ||
+    (wins[0] == wins[4] && wins[0] == wins[8] && wins[0] != "") ||
+    (wins[2] == wins[4] && wins[2] == wins[6] && wins[2] != "")
+  ) {
+    statusText.textContent = `${wins[0]} wins`;
+  } else {
+    statusText.textContent = `${currentPlayer}'s turn`;
+  }
 }
 
 function gamePlay(e) {
-  e.target.style.backgroundColor = currentPlayer;
+  if (e.target.style.backgroundColor != "blue") {
+    e.target.style.backgroundColor = currentPlayer;
+  }
   // call alternate (for game logic)
+  wins[e.target.dataset.cell] = currentPlayer;
+  console.log(wins);
   changePlayer();
 }
 
@@ -34,12 +51,11 @@ cells.forEach((cell) => {
 
 function restartGame() {
   cells.forEach((cell) => (cell.style.backgroundColor = ""));
+  wins = ["", "", "", "", "", "", "", "", ""];
+  statusText.textContent = "";
 }
 gameRestart.addEventListener("click", restartGame);
 
 //store selection
-
 //check for winner
 //is a tie
-
-//restart
