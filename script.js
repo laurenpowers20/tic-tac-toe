@@ -1,37 +1,52 @@
-const cells = document.querySelectorAll(".cell");
+const cells = document.querySelectorAll(".game-cell");
 const statusText = document.querySelector(".status-text");
 const gameRestart = document.querySelector(".game-restart");
+let currentPlayer = "red";
 const winPossibilities = [
   //across
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
   //down
-  [1, 4, 7],
+  [0, 3, 6],
+  [1, 4, 5],
   [2, 5, 8],
-  [3, 6, 9],
   //diagonal
-  [1, 5, 9],
-  [3, 5, 6],
+  [0, 4, 8],
+  [2, 4, 6],
 ];
 
-let options = ["", "", "", "", "", "", "", "", ""];
-
-function startGame() {
-  cells.forEach((cell) => cell.addEventListener("click", cellClicked));
-  gameRestart.addEventListener("click", restartGame);
+function changePlayer() {
+  currentPlayer = currentPlayer == "red" ? "blue" : "red";
 }
 
-function cellClicked() {
-  cells.addEventListener("click", updateCell);
+function alternate() {
+  if (cells.target.style.backgroundColor == "red") {
+    console.log("is red");
+  } else if (cells.target.style.backgroundColor == "blue") {
+    console.log("is blue");
+  } else {
+    console.log("seleceted");
+  }
 }
 
-function updateCell() {
-  cells.classlist.add.style = `red`;
+function gamePlay(e) {
+  e.target.style.backgroundColor = currentPlayer;
+  // call alternate (for game logic)
+  changePlayer();
 }
 
-function changePlayer() {}
+cells.forEach((cell) => {
+  cell.addEventListener("click", gamePlay);
+});
 
-function checkWinner() {}
+//select a cell
+//alternate blue or red
+//show who's turn it is in status-text
 
-function restartGame() {}
+//store selection
+
+//check for winner
+//is a tie
+
+//restart
