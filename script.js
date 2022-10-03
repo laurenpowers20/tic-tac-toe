@@ -30,6 +30,8 @@ function changePlayer() {
     (wins[2] == wins[4] && wins[2] == wins[6] && wins[2] != "")
   ) {
     statusText.textContent = `${wins[0]} wins`;
+  } else if ((wins !== "", "", "", "", "", "", "", "", "")) {
+    statusText.textContent = "It's a tie!";
   } else {
     statusText.textContent = `${currentPlayer}'s turn`;
   }
