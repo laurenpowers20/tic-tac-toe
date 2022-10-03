@@ -15,7 +15,7 @@ const winPossibilities = [
   [0, 4, 8],
   [2, 4, 6],
 ];
-let wins = ["", "", "", "", "", "", "", "", ""];
+let wins = ["", "", "", "", "", "", "", "", "", ""];
 
 function changePlayer() {
   currentPlayer = currentPlayer == "red" ? "blue" : "red";
@@ -24,13 +24,13 @@ function changePlayer() {
     (wins[3] == wins[4] && wins[4] == wins[5] && wins[3] != "") ||
     (wins[6] == wins[7] && wins[7] == wins[8] && wins[6] != "") ||
     (wins[0] == wins[3] && wins[6] == wins[6] && wins[0] != "") ||
-    (wins[1] == wins[4] && wins[1] == wins[5] && wins[1] != "") ||
+    (wins[1] == wins[4] && wins[4] == wins[5] && wins[1] != "") ||
     (wins[2] == wins[5] && wins[2] == wins[8] && wins[2] != "") ||
-    (wins[0] == wins[4] && wins[0] == wins[8] && wins[0] != "") ||
+    (wins[0] == wins[4] && wins[4] == wins[8] && wins[0] != "") ||
     (wins[2] == wins[4] && wins[2] == wins[6] && wins[2] != "")
   ) {
     statusText.textContent = `${wins[0]} wins`;
-  } else if ((wins !== "", "", "", "", "", "", "", "", "")) {
+  } else if (wins.length == 9) {
     statusText.textContent = "It's a tie!";
   } else {
     statusText.textContent = `${currentPlayer}'s turn`;
