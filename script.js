@@ -15,19 +15,11 @@ const winPossibilities = [
   [0, 4, 8],
   [2, 4, 6],
 ];
+let winningStorage = ["", "", "", "", "", "", "", "", ""];
 
 function changePlayer() {
   currentPlayer = currentPlayer == "red" ? "blue" : "red";
-}
-
-function alternate() {
-  if (cells.target.style.backgroundColor == "red") {
-    console.log("is red");
-  } else if (cells.target.style.backgroundColor == "blue") {
-    console.log("is blue");
-  } else {
-    console.log("seleceted");
-  }
+  statusText.textContent = `${currentPlayer}'s turn`;
 }
 
 function gamePlay(e) {
@@ -40,9 +32,10 @@ cells.forEach((cell) => {
   cell.addEventListener("click", gamePlay);
 });
 
-//select a cell
-//alternate blue or red
-//show who's turn it is in status-text
+function restartGame() {
+  cells.forEach((cell) => (cell.style.backgroundColor = ""));
+}
+gameRestart.addEventListener("click", restartGame);
 
 //store selection
 
